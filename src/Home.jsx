@@ -18,7 +18,6 @@ const services = [
   "Bid Review Analysis",
   "QA/QC Services",
   "Escort / Safety Watchmen",
-  //"ROW or Line Patrols (Visual Inspection)",
 ];
 
 const clients = [
@@ -166,6 +165,11 @@ export default function Home() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const base = import.meta.env.BASE_URL;
+  const logoSrc = `${base}logo-hs-utility.svg`;
+  const heroBg = `${base}hero-power-lines.jpg`;
+  const servicesBg = `${base}services-bg.jpg`;
+
   return (
     <div
       style={{
@@ -277,7 +281,7 @@ export default function Home() {
             }}
           >
             <img
-              src="/logo-hs-utility.svg"
+              src={logoSrc}
               alt="H&S Utility Consulting LLC Logo"
               className="brand-logo"
               style={{ height: 44, width: "auto", objectFit: "contain", flexShrink: 0 }}
@@ -390,8 +394,7 @@ export default function Home() {
         style={{
           position: "relative",
           overflow: "hidden",
-          backgroundImage:
-            "linear-gradient(rgba(2, 6, 23, 0.55), rgba(2, 6, 23, 0.55)), url('/hero-power-lines.jpg')",
+          backgroundImage: `linear-gradient(rgba(2, 6, 23, 0.55), rgba(2, 6, 23, 0.55)), url('${heroBg}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -431,14 +434,14 @@ export default function Home() {
 
             <h1
               style={{
-    marginTop: 24,
-    marginBottom: 0,
-    fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-    lineHeight: 1.02,
-    letterSpacing: "-0.03em",
-    maxWidth: 900,
-    color: "#ffffff",
-  }}
+                marginTop: 24,
+                marginBottom: 0,
+                fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                maxWidth: 900,
+                color: "#ffffff",
+              }}
             >
               Utility consulting built for safer, smoother project execution.
             </h1>
@@ -553,7 +556,7 @@ export default function Home() {
             >
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <img
-                  src="/logo-hs-utility.svg"
+                  src={logoSrc}
                   alt="H&S Utility Consulting LLC Logo"
                   style={{ maxHeight: 155, width: "auto", objectFit: "contain" }}
                 />
@@ -633,8 +636,7 @@ export default function Home() {
         style={{
           ...sectionWrap,
           position: "relative",
-          backgroundImage:
-            "linear-gradient(rgba(248,250,252,0.6), rgba(248,250,252,0.6)), url('/services-bg.jpg')",
+          backgroundImage: `linear-gradient(rgba(248,250,252,0.6), rgba(248,250,252,0.6)), url('${servicesBg}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -697,103 +699,53 @@ export default function Home() {
       </section>
 
       <section id="clients" style={{ ...sectionWrap, background: "#f8fafc" }}>
-  <div style={sectionInner}>
-    <SectionHeading
-      eyebrow="Clients"
-      title="Organizations H&S Utility Consulting has worked with"
-    />
+        <div style={sectionInner}>
+          <SectionHeading
+            eyebrow="Clients"
+            title="Organizations H&S Utility Consulting has worked with"
+          />
 
-    <div
-      style={{
-        marginTop: 32,
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 16,
-      }}
-    >
-      {clients.map((client) => (
-        <div
-          key={client.name}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow =
-              "0 10px 22px rgba(15,23,42,0.08)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0px)";
-            e.currentTarget.style.boxShadow =
-              "0 6px 18px rgba(15,23,42,0.06)";
-          }}
-          style={{
-            padding: "16px 26px",
-            borderRadius: 999,
-            background: "#ffffff",
-            border: "1px solid #cfd9e4",
-            color: "#334155",
-            fontWeight: 600,
-            fontSize: 17,
-            lineHeight: 1.3,
-            boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
-            transition: "all 0.15s ease",
-            cursor: "default",
-          }}
-        >
-          {client.name}
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* <section
-        style={{
-          padding: "80px 20px",
-          background: brand.green,
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: 36,
-            alignItems: "start",
-          }}
-        >
-          <div>
-            <SectionHeading
-              eyebrow="Why this redesign works"
-              title="Cleaner design. Stronger trust. Better first impression."
-              text="The current GoDaddy site has the right core information, but the layout feels repetitive and dated. This concept gives H&S a more established, professional presence without becoming flashy or overdesigned."
-              light
-            />
-          </div>
-
-          <div style={{ display: "grid", gap: 14 }}>
-            {[
-              "Clear service positioning above the fold",
-              "A stronger visual hierarchy and more modern spacing",
-              "Dedicated client credibility section",
-              "Easier path to contact and inquiry conversion",
-            ].map((item) => (
+          <div
+            style={{
+              marginTop: 32,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 16,
+            }}
+          >
+            {clients.map((client) => (
               <div
-                key={item}
+                key={client.name}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 22px rgba(15,23,42,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 18px rgba(15,23,42,0.06)";
+                }}
                 style={{
-                  borderRadius: 28,
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  background: "rgba(255,255,255,0.10)",
-                  padding: 20,
-                  color: "#fff",
-                  lineHeight: 1.8,
+                  padding: "16px 26px",
+                  borderRadius: 999,
+                  background: "#ffffff",
+                  border: "1px solid #cfd9e4",
+                  color: "#334155",
+                  fontWeight: 600,
+                  fontSize: 17,
+                  lineHeight: 1.3,
+                  boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
+                  transition: "all 0.15s ease",
+                  cursor: "default",
                 }}
               >
-                {item}
+                {client.name}
               </div>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       <section
         id="contact"
