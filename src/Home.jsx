@@ -330,7 +330,18 @@ export default function Home() {
           </nav>
 
           <div className="desktop-cta">
-            <Button href="#contact" primary>
+            <Button
+              href="#contact"
+              primary
+              onClick={closeMenu}
+              style={{
+                width: "100%",
+                marginTop: 8,
+                padding: "12px 16px",
+                fontSize: 15,
+                borderRadius: 14,
+              }}
+            >
               Request a Consultation
             </Button>
           </div>
