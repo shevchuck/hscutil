@@ -189,6 +189,10 @@ export default function Home() {
           .desktop-nav {
             display: none !important;
           }
+            .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 14px !important;
+          }
           .desktop-cta {
             display: none !important;
           }
@@ -390,7 +394,15 @@ export default function Home() {
                   href="#contact"
                   primary
                   onClick={closeMenu}
-                  style={{ width: "100%", marginTop: 4 }}
+                  style={{
+                    width: "calc(100% - 24px)",
+                    margin: "8px auto 0",
+                    padding: "12px 16px",
+                    fontSize: 15,
+                    borderRadius: 14,
+                    boxSizing: "border-box",
+                    display: "flex",
+                  }}
                 >
                   Request a Consultation
                 </Button>
@@ -661,7 +673,7 @@ export default function Home() {
             text="Built from the services already listed on the current site, reorganized into a more professional presentation that is easier to scan and trust."
           />
 
-          <div style={cardGrid3}>
+          <div className="services-grid" style={cardGrid3}>
             {services.map((service) => (
               <Card
                 key={service}
