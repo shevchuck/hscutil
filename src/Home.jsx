@@ -194,6 +194,19 @@ export default function Home() {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 14px !important;
           }
+
+          .services-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 12px !important;
+              padding: 0 6px !important;
+            }
+
+            .services-grid > div {
+              padding: 18px !important;
+              border-radius: 20px !important;
+            }
+
+
           .desktop-cta {
             display: none !important;
           }
