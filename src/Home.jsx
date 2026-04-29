@@ -25,7 +25,7 @@ const clients = [
   { name: "Greene Construction", mark: "G" },
   { name: "Gannett Flemming Engineering", mark: "GF" },
   { name: "WSP", mark: "W" },
-  { name: "BGE", mark: "B" },
+  { name: "AUI Power", mark: "B" },
 ];
 
 const differentiators = [
