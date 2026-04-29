@@ -805,6 +805,49 @@ export default function Home() {
                 title="Interested in working with H&S Utility?"
                 text="Download the employment application and email the completed form to info@hscutility.com for consideration."
               />
+              <div
+                style={{
+                  marginTop: 24,
+                  fontSize: 14,
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: brand.green,
+                }}
+              >
+                Currently Hiring:
+              </div>
+
+              <div
+                style={{
+                  marginTop: 28,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 14,
+                }}
+              >
+                {[
+                  "Lead Construction Manager",
+                  "Construction Manager",
+                  "Project Manager",
+                ].map((role) => (
+                  <div
+                    key={role}
+                    style={{
+                      padding: "14px 20px",
+                      borderRadius: 999,
+                      background: "#ffffff",
+                      border: "1px solid #cfd9e4",
+                      color: "#334155",
+                      fontWeight: 600,
+                      fontSize: 16,
+                      boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
+                    }}
+                  >
+                    {role}
+                  </div>
+                ))}
+              </div>
 
               <Card
                 style={{
