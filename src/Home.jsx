@@ -391,6 +391,7 @@ export default function Home() {
                 <MobileMenuLink href="#services" onClick={closeMenu}>Services</MobileMenuLink>
                 <MobileMenuLink href="#capabilities" onClick={closeMenu}>Capabilities</MobileMenuLink>
                 <MobileMenuLink href="#clients" onClick={closeMenu}>Clients</MobileMenuLink>
+                <MobileMenuLink href="#careers" onClick={closeMenu}>Careers</MobileMenuLink>
                 <MobileMenuLink href="#contact" onClick={closeMenu}>Contact</MobileMenuLink>
 
                 <Button
