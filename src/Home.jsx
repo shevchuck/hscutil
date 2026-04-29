@@ -162,13 +162,14 @@ function MobileMenuLink({ href, children, onClick }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const applicationSrc = `${base}employment-application.docx`;
+  
   const closeMenu = () => setMenuOpen(false);
 
   const base = import.meta.env.BASE_URL;
   const logoSrc = `${base}logo-hs-utility.svg`;
   const heroBg = `${base}hero-power-lines.jpg`;
   const servicesBg = `${base}services-bg.jpg`;
+  const applicationSrc = `${base}employment-application.docx`;
 
   return (
     <div
