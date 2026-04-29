@@ -162,7 +162,7 @@ function MobileMenuLink({ href, children, onClick }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const applicationSrc = `${base}employment-application.docx`;
   const closeMenu = () => setMenuOpen(false);
 
   const base = import.meta.env.BASE_URL;
@@ -330,7 +330,9 @@ export default function Home() {
             <a href="#services" style={navLink}>Services</a>
             <a href="#capabilities" style={navLink}>Capabilities</a>
             <a href="#clients" style={navLink}>Clients</a>
+            <a href="#careers" style={navLink}>Careers</a>
             <a href="#contact" style={navLink}>Contact</a>
+            
           </nav>
 
           <div className="desktop-cta">
@@ -769,6 +771,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+          <section id="careers" style={sectionWrap}>
+            <div style={sectionInner}>
+              <SectionHeading
+                eyebrow="Careers"
+                title="Interested in working with H&S Utility?"
+                text="Download the employment application and email the completed form to info@hscutility.com for consideration."
+              />
+
+              <Card
+                style={{
+                  marginTop: 32,
+                  padding: 28,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 20,
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: brand.slate }}>
+                    Employment Application
+                  </div>
+                  <p style={{ marginTop: 10, color: "#475569", lineHeight: 1.7 }}>
+                    Complete the application and send it to{" "}
+                    <a href="mailto:info@hscutility.com" style={{ color: brand.green, fontWeight: 700 }}>
+                      info@hscutility.com
+                    </a>.
+                  </p>
+                </div>
+
+                <Button href={applicationSrc} primary>
+                  Download Application
+                </Button>
+              </Card>
+            </div>
+          </section>
 
       <section
         id="contact"
