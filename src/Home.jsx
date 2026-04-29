@@ -191,9 +191,9 @@ export default function Home() {
             display: none !important;
           }
             .services-grid {
-              grid-template-columns: 1fr !important;
-              gap: 14px !important;
-              padding: 0 10px !important;
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+              gap: 12px !important;
+              padding: 0 8px !important;
             }
 
             .services-grid > div {
