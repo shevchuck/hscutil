@@ -191,19 +191,30 @@ export default function Home() {
             display: none !important;
           }
             .services-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 14px !important;
-          }
-
-          .services-grid {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 12px !important;
-              padding: 0 6px !important;
+              grid-template-columns: 1fr !important;
+              gap: 14px !important;
+              padding: 0 10px !important;
             }
 
             .services-grid > div {
               padding: 18px !important;
-              border-radius: 20px !important;
+              border-radius: 22px !important;
+            }
+
+            .services-grid > div div:nth-child(2) {
+              font-size: 18px !important;
+              margin-top: 12px !important;
+            }
+
+            .services-grid > div p {
+              font-size: 15px !important;
+              line-height: 1.55 !important;
+            }
+
+            .services-grid > div div:first-child {
+              width: 38px !important;
+              height: 38px !important;
+              border-radius: 14px !important;
             }
 
 
