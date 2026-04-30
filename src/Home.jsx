@@ -511,6 +511,71 @@ export default function Home() {
               coordination, QA/QC, and construction oversight.
             </p>
 
+              <div
+              style={{
+                marginTop: 22,
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 10,
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  padding: "9px 14px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.16)",
+                  border: "1px solid rgba(255,255,255,0.26)",
+                  color: "#ffffff",
+                  fontSize: 13,
+                  fontWeight: 800,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                }}
+              >
+                WBE Certified
+              </div>
+
+              <div
+                style={{
+                  padding: "9px 14px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.16)",
+                  border: "1px solid rgba(255,255,255,0.26)",
+                  color: "#ffffff",
+                  fontSize: 13,
+                  fontWeight: 800,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                }}
+              >
+                DBE Certified
+              </div>
+
+              <div
+                style={{
+                  padding: "9px 14px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.16)",
+                  border: "1px solid rgba(255,255,255,0.26)",
+                  color: "#ffffff",
+                  fontSize: 13,
+                  fontWeight: 800,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                }}
+              >
+                SBE Certified
+              </div>
+            </div>
+
+
             <div
               style={{
                 marginTop: 32,
@@ -648,11 +713,44 @@ export default function Home() {
             <SectionHeading
               eyebrow="About"
               title="A practical consulting partner for utility transmission work"
-              text="The current H&S site emphasizes overhead transmission support, a collaborative approach, and more than 50 years of combined experience. This refreshed layout turns that message into a cleaner, more modern first impression."
+              //text="The current H&S site emphasizes overhead transmission support, a collaborative approach, and more than 50 years of combined experience. This refreshed layout turns that message into a cleaner, more modern first impression."
             />
+            <div
+            style={{
+              marginTop: 26,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 12,
+            }}
+          >
+            <div
+            style={{
+              marginTop: 26,
+              fontSize: 18,
+              fontWeight: 600,
+              color: brand.green,
+            }}
+          >
+            Certified WBE, DBE, and SBE consulting partner supporting utility infrastructure projects.
+          </div>
+          </div>
+
+          <p
+            style={{
+              marginTop: 22,
+              fontSize: 18,
+              lineHeight: 1.7,
+              color: "#475569",
+              maxWidth: 520,
+            }}
+          >
+            H&S Utility Consulting supports utilities, engineering firms, and
+            contractors with experienced transmission project planning,
+            coordination, and construction execution support.
+          </p>
 
             <div style={{ marginTop: 32, color: "#475569", lineHeight: 1.9, fontSize: 17 }}>
-              <p>
+              {/* <p>
                 H&amp;S Utility Consulting is positioned to help clients navigate
                 the real-world demands of utility construction and transmission
                 projects. The goal of this design is to present the company as
@@ -663,7 +761,7 @@ export default function Home() {
                 focuses on clarity: who H&amp;S helps, what the company does, and
                 why clients can trust the team when project conditions get
                 complicated.
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -698,28 +796,46 @@ export default function Home() {
           <SectionHeading
             eyebrow="Services"
             title="Utility consulting services that support planning, execution, and field readiness"
-            text="Built from the services already listed on the current site, reorganized into a more professional presentation that is easier to scan and trust."
+            //text="Built from the services already listed on the current site, reorganized into a more professional presentation that is easier to scan and trust."
           />
 
           <div className="services-grid" style={cardGrid3}>
             {services.map((service) => (
               <Card
-                key={service}
+              key={service}
+              style={{
+                padding: "18px 20px",
+                minHeight: 110,
+                background: "rgba(255,255,255,0.88)",
+                backdropFilter: "blur(6px)",
+                borderRadius: 22,
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+              }}
+            >
+              <div
                 style={{
-                  padding: 24,
-                  background: "rgba(255,255,255,0.9)",
-                  backdropFilter: "blur(6px)",
+                  ...iconDot,
+                  width: 38,
+                  height: 38,
+                  borderRadius: 14,
+                  flexShrink: 0,
                 }}
               >
-                <div style={iconDot}>✓</div>
-                <div style={{ fontSize: 20, fontWeight: 700, marginTop: 16 }}>
-                  {service}
-                </div>
-                <p style={{ marginTop: 10, color: "#475569", lineHeight: 1.8 }}>
-                  Professional support tailored to project needs, team
-                  coordination, and real utility construction constraints.
-                </p>
-              </Card>
+                ✓
+              </div>
+
+              <div
+                style={{
+                  fontSize: 19,
+                  fontWeight: 800,
+                  lineHeight: 1.25,
+                }}
+              >
+                {service}
+              </div>
+            </Card>
             ))}
           </div>
         </div>
@@ -730,7 +846,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Capabilities"
             title="A stronger consulting presence for utilities, engineers, and contractors"
-            text="This added section helps the site feel more like an established utility consulting firm and less like a basic brochure page."
+            //text="This added section helps the site feel more like an established utility consulting firm and less like a basic brochure page."
           />
 
           <div style={cardGrid3}>
@@ -919,7 +1035,7 @@ export default function Home() {
             >
               Let’s talk about your next utility project.
             </h2>
-            <p
+            {/* <p
               style={{
                 marginTop: 24,
                 maxWidth: 640,
@@ -930,12 +1046,11 @@ export default function Home() {
             >
               This contact area can be wired to a real form, email inbox, CRM,
               or embedded scheduling link once the site is moved into production.
-            </p>
+            </p> */}
 
             <div style={{ marginTop: 28, display: "grid", gap: 14, color: "#cbd5e1" }}>
               <div>Serving utilities, contractors, and engineering partners</div>
               <div>info@hscutility.com</div>
-              <div>(Add business phone)</div>
             </div>
           </div>
 
@@ -1084,7 +1199,7 @@ const sectionGrid = {
   margin: "0 auto",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-  gap: 40,
+  gap: 28,
   alignItems: "start",
 };
 
