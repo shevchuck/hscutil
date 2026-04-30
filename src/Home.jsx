@@ -191,38 +191,38 @@ export default function Home() {
             display: none !important;
           }
             .services-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  padding: 0 10px !important;
-}
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+              gap: 12px !important;
+              padding: 0 10px !important;
+            }
 
-.services-grid > div {
-  padding: 16px !important;
-  border-radius: 22px !important;
-  min-width: 0 !important;
-  min-height: 145px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  justify-content: center !important;
-  gap: 12px !important;
-}
+            .services-grid > div {
+              padding: 16px !important;
+              border-radius: 22px !important;
+              min-width: 0 !important;
+              min-height: 145px !important;
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: flex-start !important;
+              justify-content: center !important;
+              gap: 12px !important;
+            }
 
-.services-grid > div div:first-child {
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 14px !important;
-  flex-shrink: 0 !important;
-}
+            .services-grid > div div:first-child {
+              width: 38px !important;
+              height: 38px !important;
+              border-radius: 14px !important;
+              flex-shrink: 0 !important;
+            }
 
-.services-grid > div div:nth-child(2) {
-  font-size: 17px !important;
-  line-height: 1.18 !important;
-  margin-top: 0 !important;
-  max-width: 100% !important;
-  overflow-wrap: anywhere !important;
-  word-break: normal !important;
-}
+            .services-grid > div div:nth-child(2) {
+              font-size: 16px !important;
+              line-height: 1.18 !important;
+              margin-top: 0 !important;
+              max-width: 100% !important;
+              overflow-wrap: anywhere !important;
+              word-break: normal !important;
+            }
 
 
           .desktop-cta {
