@@ -160,9 +160,115 @@ function MobileMenuLink({ href, children, onClick }) {
   );
 }
 
+function ContactForm() {
+  const [formStatus, setFormStatus] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus("Sending...");
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", "f35abb1d-c3e8-4db3-ba21-e0361e92c3bb");
+    formData.append("subject", "New inquiry from H&S Utility Consulting website");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus("Thank you. Your message has been sent.");
+        e.target.reset();
+      } else {
+        setFormStatus("Something went wrong. Please email info@hscutility.com.");
+      }
+    } catch {
+      setFormStatus("Something went wrong. Please email info@hscutility.com.");
+    }
+  };
+
+  return (
+    <div
+      style={{
+        background: "#fff",
+        color: brand.slate,
+        borderRadius: 30,
+        padding: 32,
+        boxShadow: "0 18px 44px rgba(0,0,0,0.25)",
+      }}
+    >
+      <form onSubmit={handleSubmit} style={{ display: "grid", gap: 18 }}>
+        <div style={twoCol}>
+          <div>
+            <label style={labelStyle}>Name</label>
+            <input name="name" placeholder="Your name" required style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>Company</label>
+            <input name="company" placeholder="Company name" style={inputStyle} />
+          </div>
+        </div>
+
+        <div style={twoCol}>
+          <div>
+            <label style={labelStyle}>Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+              style={inputStyle}
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Phone</label>
+            <input name="phone" placeholder="(555) 555-5555" style={inputStyle} />
+          </div>
+        </div>
+
+        <div>
+          <label style={labelStyle}>Project Details</label>
+          <textarea
+            name="message"
+            rows={5}
+            required
+            placeholder="Tell us about the project, support needed, timeline, or outage planning requirements."
+            style={{ ...inputStyle, resize: "vertical", minHeight: 120 }}
+          />
+        </div>
+
+        <button
+          type="submit"
+          style={{
+            border: "none",
+            borderRadius: 18,
+            background: brand.green,
+            color: "#fff",
+            padding: "16px 20px",
+            fontSize: 16,
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          Submit Inquiry
+        </button>
+
+        {formStatus && (
+          <div style={{ marginTop: 6, fontWeight: 600, color: brand.green }}>
+            {formStatus}
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   const closeMenu = () => setMenuOpen(false);
 
   const base = import.meta.env.BASE_URL;
@@ -190,63 +296,69 @@ export default function Home() {
           .desktop-nav {
             display: none !important;
           }
-            .services-grid {
-              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-              gap: 12px !important;
-              padding: 0 10px !important;
-            }
 
-            .services-grid > div {
-              padding: 16px !important;
-              border-radius: 22px !important;
-              min-width: 0 !important;
-              min-height: 145px !important;
-              display: flex !important;
-              flex-direction: column !important;
-              align-items: flex-start !important;
-              justify-content: center !important;
-              gap: 12px !important;
-            }
+          .services-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+            padding: 0 10px !important;
+          }
 
-            .services-grid > div div:first-child {
-              width: 38px !important;
-              height: 38px !important;
-              border-radius: 14px !important;
-              flex-shrink: 0 !important;
-            }
+          .services-grid > div {
+            padding: 16px !important;
+            border-radius: 22px !important;
+            min-width: 0 !important;
+            min-height: 145px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            gap: 12px !important;
+          }
 
-            .services-grid > div div:nth-child(2) {
-              font-size: 16px !important;
-              line-height: 1.18 !important;
-              margin-top: 0 !important;
-              max-width: 100% !important;
-              overflow-wrap: anywhere !important;
-              word-break: normal !important;
-            }
+          .services-grid > div div:first-child {
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 14px !important;
+            flex-shrink: 0 !important;
+          }
 
+          .services-grid > div div:nth-child(2) {
+            font-size: 16px !important;
+            line-height: 1.18 !important;
+            margin-top: 0 !important;
+            max-width: 100% !important;
+            overflow-wrap: anywhere !important;
+            word-break: normal !important;
+          }
 
           .desktop-cta {
             display: none !important;
           }
+
           .mobile-menu-button {
             display: inline-flex !important;
           }
+
           .header-inner {
             align-items: flex-start !important;
           }
+
           .brand-block {
             min-width: 0;
             flex: 1 1 auto;
           }
+
           .brand-title {
             font-size: 12px !important;
             letter-spacing: 0.18em !important;
             line-height: 1.25 !important;
           }
+
           .brand-subtitle {
             font-size: 12px !important;
             line-height: 1.3 !important;
           }
+
           .brand-logo {
             height: 38px !important;
           }
@@ -274,6 +386,7 @@ export default function Home() {
           .mobile-menu-button {
             display: none !important;
           }
+
           .mobile-menu-panel {
             display: none !important;
           }
@@ -364,7 +477,6 @@ export default function Home() {
             <a href="#clients" style={navLink}>Clients</a>
             <a href="#careers" style={navLink}>Careers</a>
             <a href="#contact" style={navLink}>Contact</a>
-            
           </nav>
 
           <div className="desktop-cta">
@@ -518,7 +630,7 @@ export default function Home() {
               coordination, QA/QC, and construction oversight.
             </p>
 
-              <div
+            <div
               style={{
                 marginTop: 22,
                 display: "flex",
@@ -527,61 +639,27 @@ export default function Home() {
                 alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  padding: "9px 14px",
-                  borderRadius: 999,
-                  background: "rgba(255,255,255,0.16)",
-                  border: "1px solid rgba(255,255,255,0.26)",
-                  color: "#ffffff",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                }}
-              >
-                WBE Certified
-              </div>
-
-              <div
-                style={{
-                  padding: "9px 14px",
-                  borderRadius: 999,
-                  background: "rgba(255,255,255,0.16)",
-                  border: "1px solid rgba(255,255,255,0.26)",
-                  color: "#ffffff",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                }}
-              >
-                DBE Certified
-              </div>
-
-              <div
-                style={{
-                  padding: "9px 14px",
-                  borderRadius: 999,
-                  background: "rgba(255,255,255,0.16)",
-                  border: "1px solid rgba(255,255,255,0.26)",
-                  color: "#ffffff",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                }}
-              >
-                SBE Certified
-              </div>
+              {["WBE Certified", "DBE Certified", "SBE Certified"].map((cert) => (
+                <div
+                  key={cert}
+                  style={{
+                    padding: "9px 14px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.16)",
+                    border: "1px solid rgba(255,255,255,0.26)",
+                    color: "#ffffff",
+                    fontSize: 13,
+                    fontWeight: 800,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                  }}
+                >
+                  {cert}
+                </div>
+              ))}
             </div>
-
 
             <div
               style={{
@@ -591,9 +669,7 @@ export default function Home() {
                 flexWrap: "wrap",
               }}
             >
-              <Button href="#contact" primary>
-                Get Started
-              </Button>
+              <Button href="#contact" primary>Get Started</Button>
               <Button href="#services">Explore Services</Button>
             </div>
 
@@ -607,59 +683,28 @@ export default function Home() {
                 maxWidth: 760,
               }}
             >
-              <Card
-                style={{
-                  padding: 16,
-                  background: "rgba(255,255,255,0.72)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.34)",
-                  boxShadow: "0 8px 22px rgba(15,23,42,0.10)",
-                  borderRadius: 24,
-                }}
-              >
-                <div style={statEyebrow}>Experience</div>
-                <div style={statTitle}>50+ Years Combined</div>
-                <div style={statBody}>
-                  Deep industry experience supporting utility and transmission project work.
-                </div>
-              </Card>
-
-              <Card
-                style={{
-                  padding: 16,
-                  background: "rgba(255,255,255,0.72)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.34)",
-                  boxShadow: "0 8px 22px rgba(15,23,42,0.10)",
-                  borderRadius: 24,
-                }}
-              >
-                <div style={statEyebrow}>Field Support</div>
-                <div style={statTitle}>Real-World Project Insight</div>
-                <div style={statBody}>
-                  Guidance shaped by active construction environments, coordination needs, and field realities.
-                </div>
-              </Card>
-
-              <Card
-                style={{
-                  padding: 16,
-                  background: "rgba(255,255,255,0.72)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.34)",
-                  boxShadow: "0 8px 22px rgba(15,23,42,0.10)",
-                  borderRadius: 24,
-                }}
-              >
-                <div style={statEyebrow}>Client Focus</div>
-                <div style={statTitle}>Clear Communication</div>
-                <div style={statBody}>
-                  Practical consulting support built around responsiveness, clarity, and execution.
-                </div>
-              </Card>
+              {[
+                ["Experience", "50+ Years Combined", "Deep industry experience supporting utility and transmission project work."],
+                ["Field Support", "Real-World Project Insight", "Guidance shaped by active construction environments, coordination needs, and field realities."],
+                ["Client Focus", "Clear Communication", "Practical consulting support built around responsiveness, clarity, and execution."],
+              ].map(([eyebrow, title, text]) => (
+                <Card
+                  key={title}
+                  style={{
+                    padding: 16,
+                    background: "rgba(255,255,255,0.72)",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255,255,255,0.34)",
+                    boxShadow: "0 8px 22px rgba(15,23,42,0.10)",
+                    borderRadius: 24,
+                  }}
+                >
+                  <div style={statEyebrow}>{eyebrow}</div>
+                  <div style={statTitle}>{title}</div>
+                  <div style={statBody}>{text}</div>
+                </Card>
+              ))}
             </div>
           </div>
 
@@ -720,56 +765,32 @@ export default function Home() {
             <SectionHeading
               eyebrow="About"
               title="A practical consulting partner for utility transmission work"
-              //text="The current H&S site emphasizes overhead transmission support, a collaborative approach, and more than 50 years of combined experience. This refreshed layout turns that message into a cleaner, more modern first impression."
             />
-            <div
-            style={{
-              marginTop: 26,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-            }}
-          >
-            <div
-            style={{
-              marginTop: 26,
-              fontSize: 18,
-              fontWeight: 600,
-              color: brand.green,
-            }}
-          >
-            Certified WBE, DBE, and SBE consulting partner supporting utility infrastructure projects.
-          </div>
-          </div>
 
-          <p
-            style={{
-              marginTop: 22,
-              fontSize: 18,
-              lineHeight: 1.7,
-              color: "#475569",
-              maxWidth: 520,
-            }}
-          >
-            H&S Utility Consulting supports utilities, engineering firms, and
-            contractors with experienced transmission project planning,
-            coordination, and construction execution support.
-          </p>
-
-            <div style={{ marginTop: 32, color: "#475569", lineHeight: 1.9, fontSize: 17 }}>
-              {/* <p>
-                H&amp;S Utility Consulting is positioned to help clients navigate
-                the real-world demands of utility construction and transmission
-                projects. The goal of this design is to present the company as
-                experienced, capable, and easy to work with.
-              </p>
-              <p>
-                Instead of repeating generic marketing language, the new site
-                focuses on clarity: who H&amp;S helps, what the company does, and
-                why clients can trust the team when project conditions get
-                complicated.
-              </p> */}
+            <div
+              style={{
+                marginTop: 26,
+                fontSize: 18,
+                fontWeight: 600,
+                color: brand.green,
+              }}
+            >
+              Certified WBE, DBE, and SBE consulting partner supporting utility infrastructure projects.
             </div>
+
+            <p
+              style={{
+                marginTop: 22,
+                fontSize: 18,
+                lineHeight: 1.7,
+                color: "#475569",
+                maxWidth: 520,
+              }}
+            >
+              H&amp;S Utility Consulting supports utilities, engineering firms, and
+              contractors with experienced transmission project planning,
+              coordination, and construction execution support.
+            </p>
           </div>
 
           <div style={{ display: "grid", gap: 16 }}>
@@ -803,46 +824,45 @@ export default function Home() {
           <SectionHeading
             eyebrow="Services"
             title="Utility consulting services that support planning, execution, and field readiness"
-            //text="Built from the services already listed on the current site, reorganized into a more professional presentation that is easier to scan and trust."
           />
 
           <div className="services-grid" style={cardGrid3}>
             {services.map((service) => (
               <Card
-              key={service}
-              style={{
-                padding: "18px 20px",
-                minHeight: 110,
-                background: "rgba(255,255,255,0.88)",
-                backdropFilter: "blur(6px)",
-                borderRadius: 22,
-                display: "flex",
-                alignItems: "center",
-                gap: 14,
-              }}
-            >
-              <div
+                key={service}
                 style={{
-                  ...iconDot,
-                  width: 38,
-                  height: 38,
-                  borderRadius: 14,
-                  flexShrink: 0,
+                  padding: "18px 20px",
+                  minHeight: 110,
+                  background: "rgba(255,255,255,0.88)",
+                  backdropFilter: "blur(6px)",
+                  borderRadius: 22,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 14,
                 }}
               >
-                ✓
-              </div>
+                <div
+                  style={{
+                    ...iconDot,
+                    width: 38,
+                    height: 38,
+                    borderRadius: 14,
+                    flexShrink: 0,
+                  }}
+                >
+                  ✓
+                </div>
 
-              <div
-                style={{
-                  fontSize: 19,
-                  fontWeight: 800,
-                  lineHeight: 1.25,
-                }}
-              >
-                {service}
-              </div>
-            </Card>
+                <div
+                  style={{
+                    fontSize: 19,
+                    fontWeight: 800,
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {service}
+                </div>
+              </Card>
             ))}
           </div>
         </div>
@@ -853,7 +873,6 @@ export default function Home() {
           <SectionHeading
             eyebrow="Capabilities"
             title="A stronger consulting presence for utilities, engineers, and contractors"
-            //text="This added section helps the site feel more like an established utility consulting firm and less like a basic brochure page."
           />
 
           <div style={cardGrid3}>
@@ -921,86 +940,83 @@ export default function Home() {
         </div>
       </section>
 
-          <section id="careers" style={sectionWrap}>
-            <div style={sectionInner}>
-              <SectionHeading
-                eyebrow="Careers"
-                title="Interested in working with H&S Utility?"
-                text="Download the employment application and email the completed form to info@hscutility.com for consideration."
-              />
+      <section id="careers" style={sectionWrap}>
+        <div style={sectionInner}>
+          <SectionHeading
+            eyebrow="Careers"
+            title="Interested in working with H&S Utility?"
+            text="Download the employment application and email the completed form to info@hscutility.com for consideration."
+          />
+
+          <div
+            style={{
+              marginTop: 24,
+              fontSize: 14,
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: brand.green,
+            }}
+          >
+            Currently Hiring:
+          </div>
+
+          <div
+            style={{
+              marginTop: 28,
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 14,
+            }}
+          >
+            {["Lead Construction Manager", "Construction Manager", "Project Manager"].map((role) => (
               <div
+                key={role}
                 style={{
-                  marginTop: 24,
-                  fontSize: 14,
-                  fontWeight: 700,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: brand.green,
+                  padding: "14px 20px",
+                  borderRadius: 999,
+                  background: "#ffffff",
+                  border: "1px solid #cfd9e4",
+                  color: "#334155",
+                  fontWeight: 600,
+                  fontSize: 16,
+                  boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
                 }}
               >
-                Currently Hiring:
+                {role}
               </div>
+            ))}
+          </div>
 
-              <div
-                style={{
-                  marginTop: 28,
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 14,
-                }}
-              >
-                {[
-                  "Lead Construction Manager",
-                  "Construction Manager",
-                  "Project Manager",
-                ].map((role) => (
-                  <div
-                    key={role}
-                    style={{
-                      padding: "14px 20px",
-                      borderRadius: 999,
-                      background: "#ffffff",
-                      border: "1px solid #cfd9e4",
-                      color: "#334155",
-                      fontWeight: 600,
-                      fontSize: 16,
-                      boxShadow: "0 6px 18px rgba(15,23,42,0.06)",
-                    }}
-                  >
-                    {role}
-                  </div>
-                ))}
+          <Card
+            style={{
+              marginTop: 32,
+              padding: 28,
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 20,
+            }}
+          >
+            <div>
+              <div style={{ fontSize: 22, fontWeight: 800, color: brand.slate }}>
+                Employment Application
               </div>
-
-              <Card
-                style={{
-                  marginTop: 32,
-                  padding: 28,
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 20,
-                }}
-              >
-                <div>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: brand.slate }}>
-                    Employment Application
-                  </div>
-                  <p style={{ marginTop: 10, color: "#475569", lineHeight: 1.7 }}>
-                    Complete the application and send it to{" "}
-                    <a href="mailto:info@hscutility.com" style={{ color: brand.green, fontWeight: 700 }}>
-                      info@hscutility.com
-                    </a>.
-                  </p>
-                </div>
-
-                <Button href={applicationSrc} primary>
-                  Download Application
-                </Button>
-              </Card>
+              <p style={{ marginTop: 10, color: "#475569", lineHeight: 1.7 }}>
+                Complete the application and send it to{" "}
+                <a href="mailto:info@hscutility.com" style={{ color: brand.green, fontWeight: 700 }}>
+                  info@hscutility.com
+                </a>.
+              </p>
             </div>
-          </section>
+
+            <Button href={applicationSrc} primary>
+              Download Application
+            </Button>
+          </Card>
+        </div>
+      </section>
 
       <section
         id="contact"
@@ -1032,6 +1048,7 @@ export default function Home() {
             >
               Contact
             </div>
+
             <h2
               style={{
                 marginTop: 16,
@@ -1042,18 +1059,6 @@ export default function Home() {
             >
               Let’s talk about your next utility project.
             </h2>
-            {/* <p
-              style={{
-                marginTop: 24,
-                maxWidth: 640,
-                color: "#cbd5e1",
-                lineHeight: 1.8,
-                fontSize: 18,
-              }}
-            >
-              This contact area can be wired to a real form, email inbox, CRM,
-              or embedded scheduling link once the site is moved into production.
-            </p> */}
 
             <div style={{ marginTop: 28, display: "grid", gap: 14, color: "#cbd5e1" }}>
               <div>Serving utilities, contractors, and engineering partners</div>
@@ -1061,77 +1066,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            style={{
-              background: "#fff",
-              color: brand.slate,
-              borderRadius: 30,
-              padding: 32,
-              boxShadow: "0 18px 44px rgba(0,0,0,0.25)",
-            }}
-          >
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              style={{ display: "grid", gap: 18 }}
-            >
-              <input type="hidden" name="form-name" value="contact" />
-
-              <div style={twoCol}>
-                <div>
-                  <label style={labelStyle}>Name</label>
-                  <input name="name" placeholder="Your name" style={inputStyle} />
-                </div>
-                <div>
-                  <label style={labelStyle}>Company</label>
-                  <input name="company" placeholder="Company name" style={inputStyle} />
-                </div>
-              </div>
-
-              <div style={twoCol}>
-                <div>
-                  <label style={labelStyle}>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="you@example.com"
-                    style={inputStyle}
-                  />
-                </div>
-                <div>
-                  <label style={labelStyle}>Phone</label>
-                  <input name="phone" placeholder="(555) 555-5555" style={inputStyle} />
-                </div>
-              </div>
-
-              <div>
-                <label style={labelStyle}>Project Details</label>
-                <textarea
-                  name="details"
-                  rows={5}
-                  placeholder="Tell us about the project, support needed, timeline, or outage planning requirements."
-                  style={{ ...inputStyle, resize: "vertical", minHeight: 120 }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                style={{
-                  border: "none",
-                  borderRadius: 18,
-                  background: brand.green,
-                  color: "#fff",
-                  padding: "16px 20px",
-                  fontSize: 16,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                }}
-              >
-                Submit Inquiry
-              </button>
-            </form>
-          </div>
+          <ContactForm />
         </div>
       </section>
     </div>
