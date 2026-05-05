@@ -21,11 +21,12 @@ const services = [
 ];
 
 const clients = [
-  { name: "UCS", mark: "U" },
-  { name: "Greene Construction", mark: "G" },
-  { name: "Gannett Flemming Engineering", mark: "GF" },
-  { name: "WSP", mark: "W" },
-  { name: "AUI Power", mark: "B" },
+  { name: "UCS"},
+  { name: "Greene Construction"},
+  { name: "Gannett Flemming Engineering"},
+  { name: "WSP"},
+  { name: "AUI Power"},
+  { name: "SMECO"}
 ];
 
 const differentiators = [
